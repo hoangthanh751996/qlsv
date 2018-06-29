@@ -22,19 +22,38 @@ const roles = [
     code: 3
   }
 ];
+// api.get(
+//   '/roles',
+//
+//   async (req, res) => {
+//     try {
+//       const models = await Role.find({});
+//
+//       if (models.length === 0) {
+//         const defaultRoles = roles.map(r => new Role({...r}).save());
+//         const savedRoleModels = await Promise.all(defaultRoles);
+//         return res.json(success(savedRoleModels));
+//       }
+//       return res.json(success(models));
+//     }
+//     catch
+//       (err) {
+//       console.log(err);
+//       return res.json(fail(err.message));
+//     }
+//   });
+
 api.get(
   '/roles',
 
   async (req, res) => {
     try {
-      const models = await Role.find({});
-
-      if (models.length === 0) {
-        const defaultRoles = roles.map(r => new Role({...r}).save());
-        const savedRoleModels = await Promise.all(defaultRoles);
-        return res.json(success(savedRoleModels));
-      }
-      return res.json(success(models));
+      const data = req.query.test;
+      console.log(data);
+      let a = [];
+      console.log(typeof a);
+      console.log(Array.isArray(data));
+      return res.json(success(data));
     }
     catch
       (err) {
@@ -42,5 +61,7 @@ api.get(
       return res.json(fail(err.message));
     }
   });
+
+
 
 module.exports = api;
